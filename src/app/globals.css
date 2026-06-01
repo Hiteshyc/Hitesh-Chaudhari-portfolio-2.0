@@ -1,0 +1,809 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════
+   Theme System — CSS Variables (5 named themes)
+   ═══════════════════════════════════════════════ */
+
+/* Theme 1: Catppuccin Mocha — New Default Dark */
+:root,
+[data-theme="catppuccin-mocha"] {
+  --bg-primary:        #1e1e2e;
+  --bg-sidebar:        #181825;
+  --bg-editor:         #1e1e2e;
+  --bg-tab-active:     #1e1e2e;
+  --bg-tab-inactive:   #181825;
+  --bg-statusbar:      #11111b;
+  --bg-hover:          #313244;
+  --bg-input:          #313244;
+
+  --text-primary:      #cdd6f4;
+  --text-secondary:    #bac2de;
+  --text-muted:        #6c7086;
+  --text-statusbar:    #cdd6f4;
+
+  --syntax-keyword:    #cba6f7;
+  --syntax-string:     #a6e3a1;
+  --syntax-function:   #89b4fa;
+  --syntax-comment:    #6c7086;
+  --syntax-number:     #fab387;
+  --syntax-type:       #f9e2af;
+  --syntax-operator:   #89dceb;
+
+  --accent-primary:    #cba6f7;
+  --accent-secondary:  #89b4fa;
+  --accent-pink:       #f5c2e7;
+  --accent-green:      #a6e3a1;
+  --accent-peach:      #fab387;
+  --accent-teal:       #94e2d5;
+  --accent-yellow:     #f9e2af;
+
+  --border-color:      #313244;
+  --border-active:     #45475a;
+  --scrollbar-thumb:   #45475a;
+  --scrollbar-track:   #181825;
+
+  --badge-bg:          rgba(203, 166, 247, 0.12);
+  --badge-border:      rgba(203, 166, 247, 0.30);
+  --badge-text:        #cba6f7;
+
+  --bg-activitybar:    #11111b;
+
+  --minimap-bg:        #181825;
+  --minimap-line:      #45475a;
+  --minimap-viewport:  rgba(203, 166, 247, 0.15);
+
+  --blob-opacity:      0;
+}
+
+/* Theme 2: Midnight Void — Classic Dark */
+[data-theme="midnight-void"] {
+  --bg-primary:        #0d0d0d;
+  --bg-sidebar:        #111111;
+  --bg-editor:         #141414;
+  --bg-tab-active:     #141414;
+  --bg-tab-inactive:   #1a1a1a;
+  --bg-statusbar:      #007acc;
+  --bg-hover:          #2a2d2e;
+  --bg-input:          #2a2d2e;
+
+  --text-primary:      #e8e8e8;
+  --text-secondary:    #cccccc;
+  --text-muted:        #666666;
+  --text-statusbar:    #ffffff;
+
+  --syntax-keyword:    #569cd6;
+  --syntax-string:     #ce9178;
+  --syntax-function:   #dcdcaa;
+  --syntax-comment:    #6a9955;
+  --syntax-number:     #b5cea8;
+  --syntax-type:       #4ec9b0;
+  --syntax-operator:   #d4d4d4;
+
+  --accent-primary:    #7c3aed;
+  --accent-secondary:  #2e7de9;
+  --accent-pink:       #f52a65;
+  --accent-green:      #6a9955;
+  --accent-peach:      #ce9178;
+  --accent-teal:       #4ec9b0;
+  --accent-yellow:     #dcdcaa;
+
+  --border-color:      #2a2a2a;
+  --border-active:     #3a3a3a;
+  --scrollbar-thumb:   #333333;
+  --scrollbar-track:   #111111;
+
+  --badge-bg:          rgba(124, 58, 237, 0.10);
+  --badge-border:      rgba(124, 58, 237, 0.28);
+  --badge-text:        #a78bfa;
+
+  --bg-activitybar:    #0d0d0d;
+
+  --minimap-bg:        #111111;
+  --minimap-line:      #333333;
+  --minimap-viewport:  rgba(124, 58, 237, 0.15);
+
+  --blob-opacity:      0;
+}
+
+/* Theme 3: Matcha Earthy — Dark Forest */
+[data-theme="matcha-earthy"] {
+  --bg-primary:        #1c2016;
+  --bg-sidebar:        #171a12;
+  --bg-editor:         #1c2016;
+  --bg-tab-active:     #1c2016;
+  --bg-tab-inactive:   #171a12;
+  --bg-statusbar:      #10120c;
+  --bg-hover:          #252b1e;
+  --bg-input:          #252b1e;
+
+  --text-primary:      #d4d0bb;
+  --text-secondary:    #b8b49e;
+  --text-muted:        #6b6852;
+  --text-statusbar:    #d4d0bb;
+
+  --syntax-keyword:    #8aad6b;
+  --syntax-string:     #c4a35a;
+  --syntax-function:   #7fb4a3;
+  --syntax-comment:    #5a5840;
+  --syntax-number:     #d4a96a;
+  --syntax-type:       #b8c98c;
+  --syntax-operator:   #9dc4b5;
+
+  --accent-primary:    #8aad6b;
+  --accent-secondary:  #7fb4a3;
+  --accent-pink:       #c4937a;
+  --accent-green:      #8aad6b;
+  --accent-peach:      #d4a96a;
+  --accent-teal:       #7fb4a3;
+  --accent-yellow:     #b8c98c;
+
+  --border-color:      #2e3526;
+  --border-active:     #3d4530;
+  --scrollbar-thumb:   #3d4530;
+  --scrollbar-track:   #171a12;
+
+  --badge-bg:          rgba(138, 173, 107, 0.12);
+  --badge-border:      rgba(138, 173, 107, 0.28);
+  --badge-text:        #8aad6b;
+
+  --bg-activitybar:    #10120c;
+
+  --minimap-bg:        #171a12;
+  --minimap-line:      #3d4530;
+  --minimap-viewport:  rgba(138, 173, 107, 0.18);
+
+  --blob-opacity:      0;
+}
+
+/* Theme 4: Catppuccin Latte — Light */
+[data-theme="catppuccin-latte"] {
+  --bg-primary:        #eff1f5;
+  --bg-sidebar:        #e6e9ef;
+  --bg-editor:         #eff1f5;
+  --bg-tab-active:     #eff1f5;
+  --bg-tab-inactive:   #dce0e8;
+  --bg-statusbar:      #7c3aed;
+  --bg-hover:          #ccd0da;
+  --bg-input:          #dce0e8;
+
+  --text-primary:      #4c4f69;
+  --text-secondary:    #5c5f77;
+  --text-muted:        #9ca0b0;
+  --text-statusbar:    #ffffff;
+
+  --syntax-keyword:    #8839ef;
+  --syntax-string:     #40a02b;
+  --syntax-function:   #1e66f5;
+  --syntax-comment:    #9ca0b0;
+  --syntax-number:     #fe640b;
+  --syntax-type:       #df8e1d;
+  --syntax-operator:   #04a5e5;
+
+  --accent-primary:    #8839ef;
+  --accent-secondary:  #1e66f5;
+  --accent-pink:       #ea76cb;
+  --accent-green:      #40a02b;
+  --accent-peach:      #fe640b;
+  --accent-teal:       #179299;
+  --accent-yellow:     #df8e1d;
+
+  --border-color:      #ccd0da;
+  --border-active:     #bcc0cc;
+  --scrollbar-thumb:   #acb0be;
+  --scrollbar-track:   #e6e9ef;
+
+  --badge-bg:          rgba(136, 57, 239, 0.08);
+  --badge-border:      rgba(136, 57, 239, 0.22);
+  --badge-text:        #8839ef;
+
+  --bg-activitybar:    #dce0e8;
+
+  --minimap-bg:        #e6e9ef;
+  --minimap-line:      #bcc0cc;
+  --minimap-viewport:  rgba(136, 57, 239, 0.12);
+
+  --blob-opacity:      1;
+  --blob-color-1:      rgba(136, 57, 239, 0.10);
+  --blob-color-2:      rgba(30, 102, 245, 0.08);
+  --blob-color-3:      rgba(64, 160, 43, 0.07);
+}
+
+/* Theme 5: Matcha Parchment — Light Earthy */
+[data-theme="matcha-parchment"] {
+  --bg-primary:        #f4f1e8;
+  --bg-sidebar:        #ebe7d8;
+  --bg-editor:         #f4f1e8;
+  --bg-tab-active:     #f4f1e8;
+  --bg-tab-inactive:   #e2dece;
+  --bg-statusbar:      #2d3220;
+  --bg-hover:          #e2dece;
+  --bg-input:          #e8e4d5;
+
+  --text-primary:      #2d3220;
+  --text-secondary:    #4a5535;
+  --text-muted:        #8a8572;
+  --text-statusbar:    #d4d0bb;
+
+  --syntax-keyword:    #4a7c3f;
+  --syntax-string:     #7a5c2e;
+  --syntax-function:   #3d7a6a;
+  --syntax-comment:    #9a9580;
+  --syntax-number:     #8d6534;
+  --syntax-type:       #6a7c3d;
+  --syntax-operator:   #4a7a6c;
+
+  --accent-primary:    #4a7c3f;
+  --accent-secondary:  #3d7a6a;
+  --accent-pink:       #a05a3a;
+  --accent-green:      #4a7c3f;
+  --accent-peach:      #8d6534;
+  --accent-teal:       #3d7a6a;
+  --accent-yellow:     #6a7c3d;
+
+  --border-color:      #d8d3c0;
+  --border-active:     #c8c3b0;
+  --scrollbar-thumb:   #c8c3b0;
+  --scrollbar-track:   #ebe7d8;
+
+  --badge-bg:          rgba(74, 124, 63, 0.10);
+  --badge-border:      rgba(74, 124, 63, 0.25);
+  --badge-text:        #4a7c3f;
+
+  --bg-activitybar:    #e2dece;
+
+  --minimap-bg:        #ebe7d8;
+  --minimap-line:      #c8c3b0;
+  --minimap-viewport:  rgba(74, 124, 63, 0.15);
+
+  --blob-opacity:      1;
+  --blob-color-1:      rgba(74, 124, 63, 0.10);
+  --blob-color-2:      rgba(141, 101, 52, 0.08);
+  --blob-color-3:      rgba(61, 122, 106, 0.07);
+}
+
+/* ═══════════════════════════════════════════════
+   Tailwind v4 — Map CSS vars to utility classes
+   ═══════════════════════════════════════════════ */
+
+@theme inline {
+  /* Backgrounds */
+  --color-bg-primary:      var(--bg-primary);
+  --color-bg-sidebar:      var(--bg-sidebar);
+  --color-bg-editor:       var(--bg-editor);
+  --color-bg-tab:          var(--bg-tab-inactive);
+  --color-bg-tab-active:   var(--bg-tab-active);
+  --color-bg-tab-inactive: var(--bg-tab-inactive);
+  --color-bg-statusbar:    var(--bg-statusbar);
+  --color-bg-hover:        var(--bg-hover);
+  --color-bg-activitybar:  var(--bg-activitybar);
+
+  /* Text */
+  --color-text-primary:    var(--text-primary);
+  --color-text-secondary:  var(--text-secondary);
+  --color-text-muted:      var(--text-muted);
+  --color-text-statusbar:  var(--text-statusbar);
+
+  /* Syntax */
+  --color-syntax-keyword:  var(--syntax-keyword);
+  --color-syntax-string:   var(--syntax-string);
+  --color-syntax-function: var(--syntax-function);
+  --color-syntax-comment:  var(--syntax-comment);
+  --color-syntax-number:   var(--syntax-number);
+  --color-syntax-type:     var(--syntax-type);
+
+  /* Accents */
+  --color-accent-primary:   var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-pink:      var(--accent-pink);
+  --color-accent-green:     var(--accent-green);
+  --color-accent-peach:     var(--accent-peach);
+  --color-accent-teal:      var(--accent-teal);
+  --color-accent-yellow:    var(--accent-yellow);
+  /* Legacy aliases */
+  --color-accent-cyan:      var(--accent-secondary);
+
+  /* Borders */
+  --color-border: var(--border-color);
+
+  /* Fonts */
+  --font-mono:    'JetBrains Mono', monospace;
+  --font-display: 'Syne', sans-serif;
+}
+
+/* ═══════════════════════════════════════════════
+   Base Reset
+   ═══════════════════════════════════════════════ */
+
+* {
+  transition: background-color 0.2s ease, color 0.15s ease, border-color 0.2s ease;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+/* ═══════════════════════════════════════════════
+   Blob Background — Light Themes Only
+   ═══════════════════════════════════════════════ */
+
+.blob-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: var(--blob-opacity, 0);
+  transition: opacity 0.4s ease;
+}
+
+/* Only the IDE shell wrapper sits above blobs.
+   Portals appended to body later must NOT be targeted here,
+   because `position: relative` would override their `position: fixed`. */
+.blob-bg ~ .ide-root {
+  position: relative;
+  z-index: 1;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+.blob-1 {
+  width: 500px;
+  height: 400px;
+  top: -80px;
+  right: 10%;
+  background: var(--blob-color-1, transparent);
+  animation: blob-drift-1 18s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+  width: 420px;
+  height: 380px;
+  bottom: 15%;
+  left: 5%;
+  background: var(--blob-color-2, transparent);
+  animation: blob-drift-2 22s ease-in-out infinite alternate;
+}
+
+.blob-3 {
+  width: 350px;
+  height: 320px;
+  top: 40%;
+  right: 25%;
+  background: var(--blob-color-3, transparent);
+  animation: blob-drift-3 16s ease-in-out infinite alternate;
+}
+
+@keyframes blob-drift-1 {
+  0%   { transform: translate(0, 0)        scale(1.00); }
+  33%  { transform: translate(-30px, 20px) scale(1.05); }
+  66%  { transform: translate(20px, -15px) scale(0.95); }
+  100% { transform: translate(-15px, 30px) scale(1.02); }
+}
+
+@keyframes blob-drift-2 {
+  0%   { transform: translate(0, 0)        scale(1.00); }
+  40%  { transform: translate(25px, -20px) scale(1.08); }
+  80%  { transform: translate(-20px, 15px) scale(0.96); }
+  100% { transform: translate(10px, -30px) scale(1.03); }
+}
+
+@keyframes blob-drift-3 {
+  0%   { transform: translate(0, 0)         scale(1.00); }
+  50%  { transform: translate(-25px, 25px)  scale(1.06); }
+  100% { transform: translate(20px, -20px)  scale(0.97); }
+}
+
+/* ═══════════════════════════════════════════════
+   Scrollbar Styling
+   ═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track, var(--bg-sidebar));
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════════
+   Syntax Highlighting Classes
+   ═══════════════════════════════════════════════ */
+
+.syntax-comment {
+  color: var(--syntax-comment);
+  font-style: italic;
+}
+
+.syntax-keyword {
+  color: var(--syntax-keyword);
+}
+
+.syntax-string {
+  color: var(--syntax-string);
+}
+
+.syntax-function {
+  color: var(--syntax-function);
+}
+
+.syntax-type {
+  color: var(--syntax-type);
+}
+
+.syntax-number {
+  color: var(--syntax-number);
+}
+
+.syntax-operator {
+  color: var(--syntax-operator, var(--text-primary));
+}
+
+/* ═══════════════════════════════════════════════
+   Typewriter Animation (pure CSS)
+   ═══════════════════════════════════════════════ */
+
+@keyframes typing {
+  from { width: 0 }
+  to   { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--accent-primary);
+  animation: typing 2.5s steps(40) forwards, blink 0.8s step-end infinite;
+  display: inline-block;
+}
+
+/* ═══════════════════════════════════════════════
+   Fade-in animation for sections
+   ═══════════════════════════════════════════════ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* ═══════════════════════════════════════════════
+   Below-fold performance optimization
+   ═══════════════════════════════════════════════ */
+
+.section-below-fold {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* ═══════════════════════════════════════════════
+   Line Numbers Gutter
+   ═══════════════════════════════════════════════ */
+
+.line-numbers {
+  counter-reset: line;
+}
+
+.line-numbers > .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2.5em;
+  text-align: right;
+  margin-right: 1.5em;
+  color: var(--text-muted);
+  font-size: 0.8em;
+  user-select: none;
+  opacity: 0.5;
+}
+
+/* Tighter gutter on mobile — saves ~1.5em of precious horizontal space */
+@media (max-width: 767px) {
+  .line-numbers > .line::before {
+    width: 1.5em;
+    margin-right: 0.75em;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   Selection Styling
+   ═══════════════════════════════════════════════ */
+
+::selection {
+  background: color-mix(in srgb, var(--accent-primary) 22%, transparent);
+  color: inherit;
+}
+
+/* ═══════════════════════════════════════════════
+   Tab Bar & Close Button — VSCode-style
+   ═══════════════════════════════════════════════ */
+
+.tab-bar {
+  /* display is controlled by the component (flex utility class) */
+  background: var(--bg-tab-inactive);
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-shrink: 0;
+}
+
+.tab-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px 0 10px;
+  height: 35px;
+  border-right: 1px solid var(--border-color);
+  cursor: pointer;
+  user-select: none;
+  min-width: 0;
+  max-width: 140px;   /* tighter on mobile */
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .tab-item {
+    padding: 0 12px 0 14px;
+    max-width: 180px;
+  }
+}
+
+.tab-active {
+  background: var(--bg-editor);
+  border-bottom: 2px solid var(--accent-primary);
+}
+
+.tab-inactive {
+  background: var(--bg-tab-inactive);
+  color: var(--text-muted);
+}
+
+.tab-inactive:hover {
+  background: var(--bg-tab-active);
+  color: var(--text-primary);
+}
+
+.tab-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+  flex: 1;
+}
+
+.tab-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The close button — mimics VSCode exactly */
+.tab-close {
+  opacity: 0;
+  padding: 2px;
+  border: none;
+  background: none;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.1s ease, background-color 0.1s ease;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+/* Show x on tab hover */
+.tab-item:hover .tab-close {
+  opacity: 0.6;
+}
+
+/* Always show x on active tab */
+.tab-active .tab-close {
+  opacity: 0.5;
+}
+
+/* Brighten x on direct hover */
+.tab-close:hover {
+  opacity: 1 !important;
+  background-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+/* ═══════════════════════════════════════════════
+   Empty Editor State
+   ═══════════════════════════════════════════════ */
+
+.empty-editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  color: var(--text-muted);
+  padding: 48px;
+  text-align: center;
+  font-family: var(--font-mono);
+  min-height: 100%;
+}
+
+.empty-prompt {
+  font-size: 20px;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  opacity: 0.7;
+}
+
+.empty-message {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Blinking cursor */
+.cursor-blink {
+  animation: cursorBlink 1s step-end infinite;
+  color: var(--accent-primary);
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Quick-open file buttons */
+.empty-quickopen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.empty-file-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.empty-file-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--accent-primary) 8%, transparent);
+}
+
+/* Keyboard hint */
+.empty-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.empty-hint kbd {
+  font-family: var(--font-mono);
+  padding: 1px 5px;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+.empty-hint-sub {
+  font-size: 10px;
+  opacity: 0.6;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════
+   Utility: Hide scrollbar while keeping scrollability
+   ═══════════════════════════════════════════════ */
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════
+   Mobile — comprehensive layout fixes
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  /* ── Editor shell ── */
+  main {
+    /* Override the Tailwind p-6 with tighter mobile padding */
+    padding: 0.75rem !important;
+  }
+
+  /* ── Typewriter: prevent overflow on narrow screens ── */
+  .typewriter {
+    max-width: 100%;
+    white-space: normal;
+    overflow: visible;
+    animation: none;
+    border-right: none;
+  }
+
+  /* ── Breadcrumb bar ── */
+  .breadcrumb-bar {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .breadcrumb-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── Empty editor state ── */
+  .empty-editor {
+    padding: 24px 16px;
+  }
+  .empty-prompt {
+    font-size: 15px;
+  }
+
+  /* ── Tab items: even more compact on xs screens ── */
+  .tab-item {
+    padding: 0 6px 0 8px;
+    max-width: 110px;
+  }
+  .tab-label {
+    font-size: 11px;
+  }
+}
