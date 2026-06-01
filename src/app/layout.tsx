@@ -8,6 +8,9 @@ import { EditorShell } from '@/components/ide/EditorShell';
 import { ActivityBar } from '@/components/ide/ActivityBar';
 import { Minimap } from '@/components/ide/Minimap';
 import { TabProvider } from '@/lib/TabContext';
+import { TerminalPanel } from '@/components/ide/TerminalPanel';
+import { getPortfolioData } from '@/lib/parseInfo';
+import { PortfolioLoader } from '@/components/ui/PortfolioLoader';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -22,11 +25,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const data = await getPortfolioData();
+
   return (
     <html
       lang="en"
@@ -57,7 +62,8 @@ export default function RootLayout({
           <div className="blob blob-3" />
         </div>
         <div className="ide-root flex flex-col flex-1 overflow-hidden">
-          <TabProvider>
+          <TabProvider portfolioData={data}>
+            <PortfolioLoader />
             {/* IDE Shell */}
             <Titlebar />
             <div className="flex flex-1 overflow-hidden">
@@ -69,6 +75,7 @@ export default function RootLayout({
                   <EditorShell>{children}</EditorShell>
                   <Minimap />
                 </div>
+                <TerminalPanel />
               </div>
             </div>
             <StatusBar />

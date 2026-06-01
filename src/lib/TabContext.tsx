@@ -18,10 +18,12 @@ import {
   ALL_TABS,
   getTabByPath,
 } from './tabs';
+import { type PortfolioData } from './parseInfo';
 
 interface TabContextValue {
   state: TabState;
   dispatch: React.Dispatch<TabAction>;
+  portfolioData: PortfolioData;
 }
 
 const TabContext = createContext<TabContextValue | null>(null);
@@ -36,10 +38,18 @@ function getInitialState(): TabState {
   return {
     openTabs: [HOME_TAB],
     activeTabId: 'home',
+    isPanelOpen: true,
+    activePanelTab: 'terminal',
   };
 }
 
-export function TabProvider({ children }: { children: ReactNode }) {
+export function TabProvider({
+  children,
+  portfolioData,
+}: {
+  children: ReactNode;
+  portfolioData: PortfolioData;
+}) {
   const [state, dispatch] = useReducer(tabReducer, undefined, getInitialState);
   const isHydrated = useRef(false);
   const skipNextSave = useRef(false);
@@ -50,6 +60,9 @@ export function TabProvider({ children }: { children: ReactNode }) {
     try {
       const savedTabs = sessionStorage.getItem('openTabs');
       const savedActive = sessionStorage.getItem('activeTabId');
+      const savedPanelOpen = sessionStorage.getItem('isPanelOpen');
+      const savedPanelTab = sessionStorage.getItem('activePanelTab');
+
       if (savedTabs) {
         const parsed: Tab[] = JSON.parse(savedTabs);
         const validTabs = parsed.filter((t) =>
@@ -63,6 +76,19 @@ export function TabProvider({ children }: { children: ReactNode }) {
           skipNextSave.current = true; // Prevent saving the restored state back immediately
           dispatch({ type: 'RESTORE', tabs: validTabs, activeId });
         }
+      }
+
+      // Check mobile screen width client-side
+      const isMobile = window.innerWidth < 768;
+
+      if (savedPanelOpen === 'false' || (savedPanelOpen === null && isMobile)) {
+        dispatch({ type: 'SET_PANEL_OPEN', open: false });
+      } else {
+        dispatch({ type: 'SET_PANEL_OPEN', open: true });
+      }
+
+      if (savedPanelTab === 'terminal' || savedPanelTab === 'problems' || savedPanelTab === 'chat') {
+        dispatch({ type: 'SET_PANEL_TAB', tab: savedPanelTab });
       }
     } catch {
       // sessionStorage unavailable or corrupted — use defaults
@@ -89,13 +115,15 @@ export function TabProvider({ children }: { children: ReactNode }) {
     try {
       sessionStorage.setItem('openTabs', JSON.stringify(state.openTabs));
       sessionStorage.setItem('activeTabId', state.activeTabId ?? '');
+      sessionStorage.setItem('isPanelOpen', String(state.isPanelOpen));
+      sessionStorage.setItem('activePanelTab', state.activePanelTab);
     } catch {
       // sessionStorage unavailable
     }
   }, [state]);
 
   return (
-    <TabContext.Provider value={{ state, dispatch }}>
+    <TabContext.Provider value={{ state, dispatch, portfolioData }}>
       {children}
     </TabContext.Provider>
   );

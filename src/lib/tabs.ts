@@ -9,13 +9,18 @@ export type Tab = {
 export type TabState = {
   openTabs: Tab[];
   activeTabId: string | null;
+  isPanelOpen: boolean;
+  activePanelTab: 'terminal' | 'problems' | 'chat';
 };
 
 export type TabAction =
   | { type: 'OPEN_TAB'; tab: Tab }
   | { type: 'CLOSE_TAB'; id: string }
   | { type: 'SET_ACTIVE'; id: string }
-  | { type: 'RESTORE'; tabs: Tab[]; activeId: string | null };
+  | { type: 'RESTORE'; tabs: Tab[]; activeId: string | null }
+  | { type: 'TOGGLE_PANEL' }
+  | { type: 'SET_PANEL_OPEN'; open: boolean }
+  | { type: 'SET_PANEL_TAB'; tab: 'terminal' | 'problems' | 'chat' };
 
 export const HOME_TAB: Tab = {
   id: 'home',
@@ -44,6 +49,7 @@ export function tabReducer(state: TabState, action: TabAction): TabState {
       const exists = state.openTabs.find((t) => t.id === action.tab.id);
       if (exists) return { ...state, activeTabId: action.tab.id };
       return {
+        ...state,
         openTabs: [...state.openTabs, action.tab],
         activeTabId: action.tab.id,
       };
@@ -58,14 +64,23 @@ export function tabReducer(state: TabState, action: TabAction): TabState {
         nextActive = (remaining[idx] ?? remaining[idx - 1]).id;
       }
 
-      return { openTabs: remaining, activeTabId: nextActive };
+      return { ...state, openTabs: remaining, activeTabId: nextActive };
     }
 
     case 'SET_ACTIVE':
       return { ...state, activeTabId: action.id };
 
     case 'RESTORE':
-      return { openTabs: action.tabs, activeTabId: action.activeId };
+      return { ...state, openTabs: action.tabs, activeTabId: action.activeId };
+
+    case 'TOGGLE_PANEL':
+      return { ...state, isPanelOpen: !state.isPanelOpen };
+
+    case 'SET_PANEL_OPEN':
+      return { ...state, isPanelOpen: action.open };
+
+    case 'SET_PANEL_TAB':
+      return { ...state, activePanelTab: action.tab, isPanelOpen: true };
 
     default:
       return state;

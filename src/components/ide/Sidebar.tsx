@@ -370,6 +370,29 @@ export function Sidebar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [eggState, setEggState] = useState<{ feature: string; message: string } | null>(null);
+  const [sidebarWidth, setSidebarWidth] = useState<number>(220); // Default standard width
+
+  // --- Drag Resize Handler ---
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const startX = e.clientX;
+    const startWidth = sidebarWidth;
+
+    const handleMouseMove = (moveEvent: MouseEvent) => {
+      const deltaX = moveEvent.clientX - startX;
+      // Allow contractable sizes between 160px and 450px
+      const newWidth = Math.max(160, Math.min(450, startWidth + deltaX));
+      setSidebarWidth(newWidth);
+    };
+
+    const handleMouseUp = () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+  };
 
   const openEgg = (key: string) => {
     const message = easterEggs[key] ?? "Nothing to see here. Just vibes.";
@@ -410,15 +433,24 @@ export function Sidebar() {
       </button>
 
       {/* Desktop sidebar */}
-      <aside className="hidden md:flex flex-col w-[220px] bg-bg-sidebar border-r border-border shrink-0 h-full">
+      <aside
+        className="hidden md:flex flex-col bg-bg-sidebar border-r border-border shrink-0 h-full relative"
+        style={{ width: `${sidebarWidth}px` }}
+      >
         {tree}
+        {/* Resize handle right-hand bar */}
+        <div
+          onMouseDown={handleMouseDown}
+          className="w-[3px] absolute top-0 bottom-0 right-0 z-50 cursor-col-resize hover:bg-accent-primary transition-colors"
+          title="Drag to resize explorer"
+        />
       </aside>
 
       {/* Mobile overlay */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
           <div className="absolute inset-0 bg-black/50" onClick={() => setMobileOpen(false)} />
-          <aside className="absolute left-0 top-0 bottom-0 w-[260px] bg-bg-sidebar border-r border-border flex flex-col">
+          <aside className="absolute left-0 top-0 bottom-0 w-[260px] bg-[#111111] border-r border-border flex flex-col">
             <div className="flex items-center justify-between px-3 py-2 border-b border-border">
               <span className="text-xs text-text-muted font-mono">Explorer</span>
               <button onClick={() => setMobileOpen(false)} className="p-1 rounded hover:bg-border" aria-label="Close sidebar">

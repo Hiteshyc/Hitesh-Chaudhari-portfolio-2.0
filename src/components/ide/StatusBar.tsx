@@ -19,7 +19,7 @@ const fileTypes: Record<string, string> = {
 
 export function StatusBar() {
   const pathname = usePathname();
-  const { state } = useTabContext();
+  const { state, dispatch } = useTabContext();
   const activeTab = state.openTabs.find((t) => t.id === state.activeTabId);
   const fileType = fileTypes[pathname] ?? 'TypeScript';
 
@@ -53,11 +53,35 @@ export function StatusBar() {
             main
           </span>
           <button
-            onClick={() => openEgg('status_errors', 'Problems')}
+            onClick={() => dispatch({ type: 'SET_PANEL_TAB', tab: 'problems' })}
             className="hidden sm:flex items-center gap-1.5 px-1 hover:bg-white/10 rounded transition-colors cursor-pointer"
+            title="Readiness Status"
           >
-            <span>○ 0</span>
-            <span>△ 0</span>
+            <span className="text-[#ef4444] font-bold">○ 1</span>
+            <span className="text-[#f59e0b]">△ 0</span>
+          </button>
+
+          <span className="hidden sm:inline-block text-white/20">|</span>
+
+          <button
+            onClick={() => dispatch({ type: 'SET_PANEL_TAB', tab: 'terminal' })}
+            className={`hidden sm:flex items-center gap-1 px-1.5 hover:bg-white/10 rounded transition-colors cursor-pointer ${
+              state.isPanelOpen && state.activePanelTab === 'terminal' ? 'text-accent-primary font-bold' : 'text-text-statusbar'
+            }`}
+            title="Open Interactive Terminal"
+          >
+            <span>Terminal</span>
+          </button>
+
+          <button
+            onClick={() => dispatch({ type: 'SET_PANEL_TAB', tab: 'chat' })}
+            className={`hidden sm:flex items-center gap-1 px-1.5 hover:bg-white/10 rounded transition-colors cursor-pointer ${
+              state.isPanelOpen && state.activePanelTab === 'chat' ? 'text-accent-teal font-bold' : 'text-text-statusbar'
+            }`}
+            title="Ask Hitesh (AI)"
+          >
+            <span className="w-1.5 h-1.5 bg-accent-teal rounded-full animate-pulse mr-0.5" />
+            <span>Ask AI</span>
           </button>
         </div>
 
